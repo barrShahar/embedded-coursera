@@ -8,11 +8,18 @@
  * misuse of this material.
  *
  *****************************************************************************/
+
 /**
  * @file stats.h
- * @brief <Add Brief Description Here >
  *
- * <Add Extended Description Here>
+ * @brief First assigment to "Introduction to Embedded Systems Software and Development" course
+ *
+ * A simple C-Programming that calculates statistics on a set of numbers:
+ *     -Maximum
+ *     -Minimum
+ *     -Mean
+ *     -Median
+ *
  *
  * @author Shahar Barr
  * @date 28.11.2022
@@ -23,32 +30,94 @@
 
 /* Add Your Declarations and Function Comments here */
 
-/**
- * @brief <Add Brief Description of Function Here>
- *
- * <Add Extended Description Here>
- *
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- * @param <Add InputName> <add description here>
- *
- * @return <Add Return Informaiton here>
- */
 
+/**
+ * @brief Functrion that print nicely inputes parameters
+ *
+ *  For some data this function gets a statistic input: minimum, maimum, mean and median
+ *  and prints them
+ *
+ * @param min       : variable of type 'unsigned char'
+ * @param max       : variable of type 'unsigned char'
+ * @param mean     : variable of type 'unsigned char'
+ * @param median : variable of type 'unsigned char'
+ */
 void print_statistics(unsigned char min, unsigned char max,
                       unsigned char mean, unsigned char median);
 
+
+/**
+ * @brief printing array of type 'unsigned char'
+ *
+ *  This function receives a pointer to the beginning of an array of type unsigned char, the length of the array
+ *  and print that to the screen
+ *
+ * @param array   : pointer to the beginning of an array of type 'unsigned char'
+ * @param length : variable that indicates the length of the array
+ *
+ */
 void print_array(unsigned char* array, unsigned int length);
 
+/**
+ * @brief find median of an array
+ *
+ *  This function receives a pointer to the beginning of an array of type unsigned char, sorting it,
+ *  and return the middle value if the array size is odd.
+ *  if the array size is even, it returns the mean of the two middle values
+ *
+ * @param array   : pointer to the beginning of an array of type 'unsigned char'
+ * @param length : variable that indicates the length of the array
+ *
+ * @return 'unsiged char' value of the median
+ */
 unsigned char find_median(unsigned char* array, unsigned int length);
 
+/**
+ * @brief find mean of an array
+ *
+ *  This function receives a pointer to the beginning of an array of type unsigned char
+ *  and sum the values of the array and divide them by the length of the array
+ *  Warning: the summation might overflow for a very long array
+ *
+ * @param array   : pointer to the beginning of an array of type 'unsigned char'
+ * @param length : variable that indicates the length of the array
+ *
+ * @return 'unsiged char' value of the array
+ */
 unsigned char find_mean(unsigned char* array, unsigned int length);
 
+/**
+ * @brief returns the array maximum value
+ *
+ *  Iterate on a given array and returns the maximum value
+ *
+ * @param array   : pointer to the beginning of an array of type 'unsigned char'
+ * @param length : variable that indicates the length of the array
+ *
+ * @return the maximum variable in the array
+ */
 unsigned char find_maximum(unsigned char* array, unsigned int length);
 
+/**
+ * @brief returns the array minimum value
+ *
+ *  Iterate on a given array and returns the maximum value
+ *
+ * @param array   : pointer to the beginning of an array of type 'unsigned char'
+ * @param length : variable that indicates the length of the array
+ *
+ * @return the minimum variable in the array
+ */
 unsigned char find_minimum(unsigned char* array, unsigned int length);
 
+/**
+ * @brief sort an array of type 'unsigned char'
+ *
+ *  passing the input arguments to a function that implements merge sort algorithm
+ *
+ * @param array   : pointer to the beginning of an array of type 'unsigned char'
+ * @param length : variable that indicates the length of the array
+ */
 void sort_array(unsigned char* array, unsigned int length);
 
 /**=====================    Helper functions     =========================================*/
@@ -60,9 +129,9 @@ void sort_array(unsigned char* array, unsigned int length);
  * them via megre functoin.
  * Sorting the array from index 'l' to index 'r'
  *
- * @param array  a pointer to an unsorted array of type char
- * @param l          starting sorting index array of type unsigned int
- * @param r          final sorting index array of  type unsined int
+ * @param array :  a pointer to an unsorted array of type char
+ * @param l          : starting sorting index array of type unsigned int
+ * @param r          : final sorting index array of  type unsined int
  */
 
 void mergeSort(unsigned char* array,unsigned int l,unsigned int r);

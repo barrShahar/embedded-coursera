@@ -9,13 +9,17 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name>
- * @brief <Add Brief Description Here >
+ * @file stats.c
+ * @brief First assigment to "Introduction to Embedded Systems Software and Development" course
  *
- * <Add Extended Description Here>
+ * A simple C-Programming that calculates statistics on a set of numbers:
+ *     -Maximum
+ *     -Minimum
+ *     -Mean
+ *     -Median
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Shahar Barr
+ * @date 28.11.2022
  *
  */
 
@@ -26,7 +30,7 @@
 
 /* Size of the Data Set */
 #define SIZE (40)
-#define HISTORGRAM_LENGTH (6)
+
 int main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
@@ -72,33 +76,38 @@ void print_array(unsigned char* array, unsigned int length){
 }
 
 unsigned char find_median(unsigned char* array, unsigned int length){
-    unsigned char c_arr[length]; /* copy array */
+    
+    /* Copying the data from input array to c_arr (copy array) */
+    unsigned char c_arr[length];
     for (unsigned int i = 0; i < length; ++i)
         c_arr[i] = array[i];
     
-    /* sort array */
+    /* sorting the array */
     sort_array(c_arr, length);
 
-    /*
-     * if length is odd, median = arr[N/2]
-     * if length is even, median = 1/2(arr[n\2] + arr[n/2-1])
-     */
-    if (length % 2 == 0) // length is even 
+    /* returns the calculated mean */
+    if (length % 2 == 0) // length is even
         return (c_arr[length/2] + c_arr[length/2-1])/2;
     return c_arr[length/2];
 }
 
 unsigned char find_mean(unsigned char* array, unsigned int length){
+    
+    /* declaration of the summation variable */
     unsigned long sum = 0;
+    
     for (unsigned int i = 0; i < length; ++i)
         sum += array[i];
-
+    
     return (unsigned char) (sum/length);
 }
 
 
 unsigned char find_maximum(unsigned char* array, unsigned int length){
+    
+    /* Must initialize to values in set, not zero */
     unsigned char max = array[0];
+    
     for (unsigned int i = 1; i < length; ++i)
         if (array[i] > max)
             max = array[i];
@@ -107,7 +116,10 @@ unsigned char find_maximum(unsigned char* array, unsigned int length){
 }
 
 unsigned char find_minimum(unsigned char* array, unsigned int length){
+    
+    /* Must initialize to values in set, not zero */
     unsigned char min = array[0];
+    
     for (unsigned int i = 1; i < length; ++i)
         if (array[i] < min)
             min = array[i];
