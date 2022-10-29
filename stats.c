@@ -26,6 +26,7 @@
 
 /* Size of the Data Set */
 #define SIZE (40)
+#define HISTORGRAM_LENGTH (6)
 int main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
@@ -35,12 +36,33 @@ int main() {
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
   /* Other Variable Declarations Go Here */
+    unsigned char min, max, mean, median;
+    
   /* Statistics and Printing Functions Go Here */
+    min = find_minimum(test, SIZE);
+    max = find_maximum(test, SIZE);
+    mean = find_mean(test, SIZE);
+    median = find_median(test, SIZE);
+    
+    print_statistics(min, max, mean, median);
 
     return 0;
 }
 
 /* Add other Implementation File Code Here */
+
+void print_statistics(unsigned char min, unsigned char max,
+                      unsigned char mean, unsigned char median){
+
+
+    
+    printf("*****************************************\n");
+    printf("* the minimum value of the array is %d\n",min);
+    printf("* the maximum value of the array is %d\n",max);
+    printf("* the mean value of the array is %d\n",mean);
+    printf("* the median value of the array is %d\n",median);
+    printf("*****************************************\n");
+}
 
 void print_array(unsigned char* array, unsigned int length){
     printf("[");
@@ -50,16 +72,18 @@ void print_array(unsigned char* array, unsigned int length){
 }
 
 unsigned char find_median(unsigned char* array, unsigned int length){
-    unsigned char c_arr[length]; // copy array
+    unsigned char c_arr[length]; /* copy array */
     for (unsigned int i = 0; i < length; ++i)
         c_arr[i] = array[i];
     
-    // sort array
+    /* sort array */
     sort_array(c_arr, length);
-    
-    // if length is odd, median = arr[N/2]
-    // if length is even, median = 1/2(arr[n\2] + arr[n/2-1])
-    if (length % 2 == 0) // length is even
+
+    /*
+     * if length is odd, median = arr[N/2]
+     * if length is even, median = 1/2(arr[n\2] + arr[n/2-1])
+     */
+    if (length % 2 == 0) // length is even 
         return (c_arr[length/2] + c_arr[length/2-1])/2;
     return c_arr[length/2];
 }
@@ -68,7 +92,8 @@ unsigned char find_mean(unsigned char* array, unsigned int length){
     unsigned long sum = 0;
     for (unsigned int i = 0; i < length; ++i)
         sum += array[i];
-    return (unsigned char) sum/length;
+
+    return (unsigned char) (sum/length);
 }
 
 
@@ -137,7 +162,6 @@ void mergeSort(unsigned char* array,unsigned int l,unsigned int r){
     mergeSort(array,l,q);
     mergeSort(array, q, r);
     merge(array,l,q,r);
-    //print_array(array, size);
 }
 
 void sort_array(unsigned char* array, unsigned int length){

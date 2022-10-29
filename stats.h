@@ -36,7 +36,8 @@
  * @return <Add Return Informaiton here>
  */
 
-void print_statistics(unsigned char* array, unsigned int length);
+void print_statistics(unsigned char min, unsigned char max,
+                      unsigned char mean, unsigned char median);
 
 void print_array(unsigned char* array, unsigned int length);
 
